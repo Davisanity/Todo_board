@@ -1,0 +1,34 @@
+#profile{
+  width: 200px;
+  height: 200px
+}
+#content{
+  text-align: center;
+}
+
+
+table {
+    width: 100%;
+    color:#444444; /*文字顏色*/
+    opacity: 0.8;
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+th{
+    height: 50px;
+    color:#000000; /*文字顏色*/
+    border-bottom: 15px solid #FFFFFF;
+}
+td {
+    height: 40px;
+    padding: 8px;
+    text-align: center;
+    border-bottom: 20px solid #FFFFFF;
+    /*border-color: #FFFFFF;*/
+    width:100px
+    /*color*/
+}
+
+tr:hover {
+  background-color: #00DD77;
+}
