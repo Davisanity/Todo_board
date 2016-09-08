@@ -1,8 +1,10 @@
 <html>
-<title>Let me show You what did you do</title>
+<title>Let me show You what you do</title>
 <head><link rel=stylesheet type="text/css" href="board_view.css"></head>
 <body background="Pics/board_back.jpg " background-repeat: repeat-x;>
   <h1 id="content">來看看這些日子你做了什麼吧</h1>
+  <a href="http://localhost/DayNote/index.php"  title="back">點我返回表單</a>  
+  <!--上面那行如果加上 target="_blank"  會變成開新分頁-->
   <table name="board" bgcolor="00FF99">
   <?php
   require_once('connsql.php');

@@ -15,7 +15,9 @@
     <p><input type="checkbox" name="check6" value=""><input type="text" name="note6">去運動 </p>
     <p><input type="checkbox" name="check7" value=""><input type="text" name="note7">其他事 </p>
     <input type="submit" value="更新資料" />
+    <input type="button" value="去看看" onclick="location.href='http://localhost/DayNote/board.php'">
   </div>
   </form>
+ 
 </body>
 </html>
