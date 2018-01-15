@@ -5,11 +5,13 @@
 <?php
   require_once('connsql.php');
   $conn=mysqli_connect($servername,$username,$password,$dbname);
-  $db_note = ["","note_pro","note_reading","note_writing","note_englishing","note_movie","note_sport","note_other"];
+  // $db_note = ["","note_pro","note_reading","note_writing","note_englishing","note_movie","note_sport","note_other"];
+  $db_note = ["","note_pro","note_reading","note_language","note_movie","note_sport","note_other"];
   $d=$_GET['modify_date'];
   $dates=date('Y-m-d',strtotime($d));
   echo $dates."\n";
-  for($i=1;$i<8;$i++){
+
+  for($i=1;$i<7;$i++){
     @$check[$i]=$_GET['check'.$i];
     @$note[$i]=$_GET['note'.$i];
     if(isset($_GET['check'.$i])){
