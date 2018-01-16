@@ -9,20 +9,21 @@
   $db_note = ["","note_pro","note_reading","note_language","note_movie","note_sport","note_other"];
   $d=$_GET['modify_date'];
   $dates=date('Y-m-d',strtotime($d));
+  $talbe_name='second2016';
   echo $dates."\n";
 
   for($i=1;$i<7;$i++){
     @$check[$i]=$_GET['check'.$i];
     @$note[$i]=$_GET['note'.$i];
     if(isset($_GET['check'.$i])){
-      $sql="SELECT * FROM things WHERE dates='$dates'";
+      $sql="SELECT * FROM $talbe_name WHERE dates='$dates'";
       $result=mysqli_query($conn,$sql);
       @$row_count=mysqli_num_rows($result);
       // echo $row_count;
       if($row_count==0){
-        $insert="INSERT INTO things(dates) VALUE('$dates')";
+        $insert="INSERT INTO $talbe_name(dates) VALUE('$dates')";
         if(mysqli_query($conn,$insert)){
-            $update ="UPDATE things SET $db_note[$i]='$note[$i]' WHERE dates='$dates'";//這些單引號是必需的
+            $update ="UPDATE $talbe_name SET $db_note[$i]='$note[$i]' WHERE dates='$dates'";//這些單引號是必需的
             mysqli_query($conn,$update);
             echo $i." 's New record added successfully"."\n";
         }else{
@@ -31,7 +32,7 @@
       }
       else{
         // echo $db_note[1]." ".$note[1]." ".$dates." ";
-        $update ="UPDATE things SET $db_note[$i]='$note[$i]' WHERE dates='$dates'";//這些單引號是必需的
+        $update ="UPDATE $talbe_name SET $db_note[$i]='$note[$i]' WHERE dates='$dates'";//這些單引號是必需的
         if(mysqli_query($conn,$update)){
           echo $i." updated"."\n";
         }
@@ -44,7 +45,8 @@
     }
   }
   mysqli_close($conn);
-  header("location:index.php");
+  header("location:profile.php");
+  // header location means 跳轉到哪個頁面
 ?>
 </pre>
 </body>
