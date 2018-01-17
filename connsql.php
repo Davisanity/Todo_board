@@ -1,7 +1,7 @@
 <?php
   $servername = "localhost";
   $username = "";
-  $password = "";
+  $password = "";//pass should be clear before git push
   $dbname="add_todo";
   // Create connection
   $conn = new mysqli($servername, $username, $password);

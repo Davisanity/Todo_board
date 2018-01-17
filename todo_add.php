@@ -1,6 +1,7 @@
 <html>
 <title>這裡的資料庫是連成一塊的</title>
 <body>
+
 <pre>
 <?php
   require_once('connsql.php');
@@ -9,7 +10,7 @@
   $db_note = ["","note_pro","note_reading","note_language","note_movie","note_sport","note_other"];
   $d=$_GET['modify_date'];
   $dates=date('Y-m-d',strtotime($d));
-  $talbe_name='second2016';
+  $talbe_name='2016second';
   echo $dates."\n";
 
   for($i=1;$i<7;$i++){
@@ -51,3 +52,6 @@
 </pre>
 </body>
 </html>
+
+<!-- 新增資料庫 -->
+<!-- CREATE TABLE `add_todo`.`second2017` ( `dates` DATE NOT NULL , `note_pro` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `note_reading` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `note_language` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `note_movie` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `note_sport` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `note_other` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ) ENGINE = InnoDB; -->

@@ -18,8 +18,16 @@
 </script> -->
 <head><link rel=stylesheet type="text/css" href="css/board_view.css"></head>
 <body background="Pics/background.jpg " background-repeat: repeat-x;>
-
+  <div>
   <img src="Pics/profile.jpg" id="profile">
+  <p>歡迎回來 
+  <?php
+  session_start();
+  echo $_SESSION['l_id'];
+  // SESSION是全局变量，也就是说，它只要被声明，在所有页面都是可用的，前提是你不关闭网页或者没有到SESSION的生命周期
+  ?>
+  </p>
+  </div>
   <form action="todo_add.php" method="get" name="form">
   <div id="content">
     <p><input type=date name="modify_date" value="<?php echo date('Y-m-d'); ?>"></p>

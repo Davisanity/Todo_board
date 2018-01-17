@@ -57,8 +57,10 @@
   } 
   // button log in pressed
   else if (isset($_POST["btn_l"])){
+  	session_start();
   	$login_id=$_POST['l_id'];
   	$login_pass=$_POST['l_pass'];
+  	$_SESSION['l_id']=$login_id;
   	$query = "SELECT * FROM `user` WHERE `account`= '$login_id' AND `password`= '$login_pass' ";
   	$result=mysqli_query($conn,$query);
   	$total_records = mysqli_num_rows($result);
