@@ -86,7 +86,7 @@
 
   
 
-  <script  src="js/index.js"></script>
+  <script src="js/index.js"></script>
   <script src="js/login_index.js"></script>
 
 

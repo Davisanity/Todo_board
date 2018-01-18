@@ -40,6 +40,7 @@ function anti_sql_inj(input){
 	return true;
 }
 
+
 function check_passwd(pw1,pw2){
 	// if(pw1==''){
 	// 	alert("密碼不可以空白");
@@ -62,3 +63,4 @@ function check_passwd(pw1,pw2){
 	}
 	return true;
 }
+

@@ -18,7 +18,7 @@
 </script> -->
 <head><link rel=stylesheet type="text/css" href="css/board_view.css"></head>
 <body background="Pics/background.jpg " background-repeat: repeat-x;>
-  <div>
+  <div id="content">
   <img src="Pics/profile.jpg" id="profile">
   <p>歡迎回來 
   <?php
@@ -28,7 +28,7 @@
   ?>
   </p>
   </div>
-  <form action="todo_add.php" method="get" name="form">
+  <form name="form" action="todo_add.php" onsubmit="return check_add_todo()" method="get">
   <div id="content">
     <p><input type=date name="modify_date" value="<?php echo date('Y-m-d'); ?>"></p>
     <p><input type="checkbox" name="check1" value=""><input type="text" name="note1">學專業 </p>
@@ -38,11 +38,12 @@
     <p><input type="checkbox" name="check4" value=""><input type="text" name="note4">看影片 </p>
     <p><input type="checkbox" name="check5" value=""><input type="text" name="note5">健個身 </p>
     <p><input type="checkbox" name="check6" value=""><input type="text" name="note6">其他事 </p>
+       <input type="hidden" name="note7" value=<?php echo '"'.$_SESSION['l_id'].'"'; ?>>
     <input type="submit" value="更新資料" />
     <input type="button" value="去看看" onclick="location.href='http://140.115.52.40:81/Todo_board/board.php'">
-
+    <input type="button" value="登出" onclick="location.href='index.php'">
   </div>
   </form>
-  <script src="js/main.js"></script>
+  <script src="js/profile.js"></script>
 </body>
 </html>

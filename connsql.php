@@ -1,6 +1,6 @@
 <?php
   $servername = "localhost";
-  $username = "";
+  $username = "root";
   $password = "";//pass should be clear before git push
   $dbname="add_todo";
   // Create connection

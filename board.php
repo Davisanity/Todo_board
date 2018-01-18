@@ -24,11 +24,11 @@
   <?php
   require_once('connsql.php');
   $conn=mysqli_connect($servername,$username,$password,$dbname);
+  //line 27~54 找有多少table
   $sql = "SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'add_todo' AND engine = 'InnoDB' AND TABLE_NAME!='user' ORDER by TABLE_NAME DESC";
   // information_schema.TABLES是固定用法 然後要找的table放在TABLE_SCHEMA 
   $query_result=mysqli_query($conn,$sql);
   $table_records=mysqli_num_rows($query_result);  // 取得記錄數
-  echo '<select id="choose_table" name="choose_table" onchange=get_tb_name()>';
   $i=0;
   $query_table=array();
   while ($r=mysqli_fetch_array($query_result)){
@@ -38,7 +38,6 @@
       }else{
         echo '<OPTION VALUE="'.$query_table[$i].'" >'.$query_table[$i];
       }
-       // || $_GET['value']==''
       $i++;
   }
   if(isset($_GET['value'])){
@@ -51,16 +50,18 @@
   }else{
     $db_table=$query_table[0];  
   }
-
   echo '</select>';
-  
+  $user_id = $_SESSION['l_id'];
+  // echo $user_id;
  // $db_note = ["","note_pro","note_reading","note_writing","note_englishing","note_movie","note_sport","note_other"];
-  $sql = "SELECT * FROM ".$db_table." ORDER by dates ASC"; //在things資料表中選擇所有欄位
+  $sql = "SELECT * FROM ".$db_table." WHERE `user_id` =  '".$user_id."' ORDER by dates ASC" ; //在things資料表中選擇所有欄位
+  echo $sql;
   mysqli_query($conn,  "SET collation_connection = ‘utf8_general_ci‘");
   $query_result = mysqli_query($conn,$sql); // 執行SQL查詢
   //$result = mysqli_fetch_assoc($query_result); //將陣列以欄位名索引
   //$total_fields=mysqli_num_fields($query_result); // 取得欄位數(會是8 因為有8個欄位)
-  $total_records=mysqli_num_rows($query_result);  // 取得記錄數
+  //@代表隱藏錯誤訊息
+  @$total_records=mysqli_num_rows($query_result);  // 取得記錄數
   echo '<tr>';
     echo '<th>'."日期".'</th>';
     echo '<th>'."專業".'</th>';
