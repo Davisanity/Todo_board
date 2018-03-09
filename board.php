@@ -13,7 +13,7 @@
     table = document.getElementById("choose_table").value;
     month = document.getElementById("choose_month").value
     location.href="board.php?value="+table+"&month="+month;
-    // alert(select)
+    // alert(month);
     // $.ajax({
     //    type: "POST",
     //    url: "board.php",
@@ -46,7 +46,7 @@
   <?php
   require_once('connsql.php');
   $conn=mysqli_connect($servername,$username,$password,$dbname);
-  /* line 33~56 找有多少table ******** */
+  /* line 49~78 找有多少table ******** */
   $sql = "SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'add_todo' AND engine = 'InnoDB' AND TABLE_NAME!='user' ORDER by TABLE_NAME DESC";
   // information_schema.TABLES是固定用法 然後要找的table放在TABLE_SCHEMA 
   $query_result=mysqli_query($conn,$sql);
@@ -76,39 +76,35 @@
   echo '</select>';
   $user_id = $_SESSION['l_id'];
   /*  **********************  */
-  /* line60~ 選擇table內的月份 **** */
+
+  //SELECT MONTH(`dates`) FROM `2018first` GROUP BY MONTH(`dates`) 搜尋出所有月份
+   //SELECT `dates` FROM `2018first` WHERE MONTH(`dates`) = 1 搜尋出1月的所有資料
+  // $sql = "SELECT * FROM ".$db_table." WHERE `user_id` =  '".$user_id." 'AND MONTH(`dates`) = 1 ORDER by dates ASC" ; 
+  /* line83~106 選擇table內的月份 **** */
   echo '<a >選擇月份</a>';
   $sql = "SELECT MONTH(`dates`) FROM `" .$db_table. "` GROUP BY MONTH(`dates`)";
   $query_result=mysqli_query($conn,$sql);
   echo '<select id="choose_month" name="choose_month" onchange=get_month() >';
-  echo '<OPTION  VALUE="all" >all';
+  
   $i=0;
   $q_month='all';
   $query_month=array();
+  echo '<OPTION  VALUE="all" >all';
   while ($r=mysqli_fetch_array($query_result)){
     $query_month[$i]=$r['MONTH(`dates`)'];
-    echo '<OPTION VALUE="'.$query_month[$i].'" >'.$query_month[$i];
-    if(isset($_GET['month'])){
-      if($_GET['month']==$db_table){
-        $q_month='all';
-      }
-      else{
+    
+    if(isset($_GET['month']) && $_GET['month']==$query_month[$i]){
+        echo '<OPTION selected VALUE="'.$query_month[$i].'" >'.$query_month[$i];
         $q_month=$_GET['month'];
-      }
+      
     }else{
-      $q_month='all';
+      echo '<OPTION VALUE="'.$query_month[$i].'" >'.$query_month[$i];
+      
     }
     $i++;
   }
- 
   echo '</select>';
-  echo $q_month;
-
   /*  **************  */
-
-  //SELECT MONTH(`dates`) FROM `2018first` GROUP BY MONTH(`dates`) 搜尋出所有月份
-
-
   // $db_note = ["","note_pro","note_reading","note_writing","note_englishing","note_movie","note_sport","note_other"];
   //如果有選月份 就是else那個
   if ($q_month == 'all'){
@@ -116,9 +112,6 @@
   }else{
     $sql = "SELECT * FROM ".$db_table." WHERE `user_id` =  '".$user_id." 'AND MONTH(`dates`) = '" .$q_month.  "' ORDER by dates ASC" ;
   }
-  
-  //SELECT `dates` FROM `2018first` WHERE MONTH(`dates`) = 1 搜尋出1月的所有資料
-  // $sql = "SELECT * FROM ".$db_table." WHERE `user_id` =  '".$user_id." 'AND MONTH(`dates`) = 1 ORDER by dates ASC" ; 
   
   //在things資料表中選擇所有欄位
   mysqli_query($conn,  "SET collation_connection = ‘utf8_general_ci‘");
