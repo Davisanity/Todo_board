@@ -1,7 +1,7 @@
 <?php
   $servername = "localhost";
   $username = "root";
-  $password = "dwlab1234";//pass should be clear before git push (pass is lab pass)
+  $password = "XXXX";//pass should be clear before git push (pass is lab pass)
   $dbname="add_todo";
   // Create connection
   $conn = new mysqli($servername, $username, $password);
